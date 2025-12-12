@@ -1,0 +1,19 @@
+[build]
+target = "thumbv6m-none-eabi"  # RP2040 (Cortex-M0+)
+
+[target.thumbv6m-none-eabi]
+# Uncomment the line below if you have probe-rs installed and RP2040 hardware
+# runner = "probe-rs run --chip RP2040"
+rustflags = [
+  "-C", "link-arg=--nmagic",
+  "-C", "link-arg=-Tlink.x",
+  "-C", "link-arg=-Tdefmt.x",
+  "-C", "no-vectorize-loops",
+]
+
+# Uncomment the lines below if you have probe-rs installed and RP2040 hardware
+# [target.'cfg(all(target_arch = "arm", target_os = "none"))']
+# runner = "probe-rs run --chip RP2040"
+
+[env]
+DEFMT_LOG = "info"
